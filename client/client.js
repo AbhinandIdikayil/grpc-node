@@ -29,17 +29,20 @@ function createOrder(item, price) {
                 price
             }
             paymentClient.ProcessPayment(paymentRequest, (err, data) => {
-                if(err) rej
-                console.log(data,'--- payment success ---')
+                if (err) rej
+                console.log(data, '--- payment success ---')
                 res(data)
             })
         })
     })
 }
- 
+
 function listOrder() {
     return new Promise((res, rej) => {
-
+        orderClient.ListOrders({},(err,data) => {
+            if(err) rej(err);
+            res(data)
+        }) 
     })
 }
 
@@ -54,7 +57,8 @@ app.post('/order', async (req, res) => {
 })
 
 app.get('/order', async (req, res) => {
-
+    const data = await listOrder()
+    res.status(200).json(data)
 })
 
 app.listen(5000, () => {

@@ -18,7 +18,7 @@ server.addService(orderProto.OrderService.service, {
         const { item, price } = call.request;
         if (!item || !price) {
             return null
-        }
+        }  
         const orderId = Math.floor(Math.random() * 1000)
         orders.push({ orderId, item, price });
         const response = { orderId, item, price };
