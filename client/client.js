@@ -25,7 +25,7 @@ function createOrder(item, price) {
             const { orderId, item, price } = data
             const paymentRequest = {
                 order_id: orderId,
-                item,
+                item, 
                 price
             }
             paymentClient.ProcessPayment(paymentRequest, (err, data) => {
